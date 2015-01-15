@@ -1,0 +1,35 @@
+{
+  "name": "generator-shields",
+  "version": "0.0.0",
+  "description": "Generate shields for your node.js module",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "isquariel/generator-shields",
+  "author": {
+    "name": "isqua",
+    "email": "isqua@isqua.ru",
+    "url": "https://github.com/isquariel"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "shields"
+  ],
+  "dependencies": {
+    "chalk": "^0.5.0",
+    "git-remote-origin-url": "^1.1.0",
+    "yeoman-generator": "^0.18.0",
+    "yosay": "^0.3.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
