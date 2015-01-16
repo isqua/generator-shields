@@ -1,6 +1,6 @@
 {
   "name": "generator-shields",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Generate shields for your node.js module",
   "license": "MIT",
   "main": "app/index.js",
