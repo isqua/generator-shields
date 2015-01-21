@@ -59,7 +59,7 @@ module.exports = yeoman.generators.Base.extend({
         return {
           type: 'confirm',
           name: item,
-          message: this._shields.getShieldMessage(item),
+          message: this._shields.getShieldMessage(item) + '?',
           default: defaults[item]
         };
       }.bind(this))
