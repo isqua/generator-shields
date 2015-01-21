@@ -8,13 +8,13 @@ generator-shields [![NPM version][npm-image]][npm-link]
 
 Easily add shields to your README file. Available shields:
 
- * ![NPM version][npm-example] current version in npm;
- * ![Build status][build-example] current build status from [Travis CI](https://travis-ci.org/repositories);
- * ![Test coverage][coverage-example] test coverage from [Coveralls](https://coveralls.io);
- * ![Code climate][climate-example] code climate rate from [Code Climate](https://codeclimate.com/);
- * ![Dependency status][deps-example] dependencies from [David DM](https://david-dm.org/);
- * ![devDependency status][devdeps-example] dev dependencies from [David DM](https://david-dm.org/);
- * ![peerDependency status][peerdeps-example] peer devdependencies from [David DM](https://david-dm.org/).
+ * ![NPM version][npm-example] `--npm` current version in npm;
+ * ![Build status][build-example] `--travis` current build status from [Travis CI](https://travis-ci.org/repositories);
+ * ![Test coverage][coverage-example] `--coverage` test coverage from [Coveralls](https://coveralls.io);
+ * ![Code climate][climate-example] `--climate` code climate rate from [Code Climate](https://codeclimate.com/);
+ * ![Dependency status][deps-example] `--deps` dependencies from [David DM](https://david-dm.org/);
+ * ![devDependency status][devdeps-example] `--devdeps` dev dependencies from [David DM](https://david-dm.org/);
+ * ![peerDependency status][peerdeps-example] `--peerdeps` peer devdependencies from [David DM](https://david-dm.org/).
 
 ## Usage
 
