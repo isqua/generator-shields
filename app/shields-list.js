@@ -1,7 +1,7 @@
 module.exports = {
   items: [
     'npm',
-    'build',
+    'travis',
     'coverage',
     'climate',
     'deps',
@@ -15,7 +15,7 @@ module.exports = {
       path: 'npm/v/{npmName}',
       link: 'https://npmjs.org/package/{npmName}'
     },
-    build: {
+    travis: {
       message: 'Add Travis-CI shield?',
       text: 'Build status',
       path: 'travis/{repo}',

@@ -17,7 +17,7 @@ module.exports = yeoman.generators.Base.extend({
       repoOwner: 'someuser',
       repoName: this.appname,
       npm: ! pkg.private,
-      build: this.fs.exists('.travis.yml'),
+      travis: this.fs.exists('.travis.yml'),
       coverage: false,
       climate: false,
       deps: this._hasDeps(pkg, 'dependencies'),
