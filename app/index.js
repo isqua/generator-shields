@@ -5,28 +5,52 @@ var yosay = require('yosay');
 var Shields = require('./shields');
 
 module.exports = yeoman.generators.Base.extend({
-  initializing: function () {
+  constructor: function() {
+    yeoman.generators.Base.apply(this, arguments);
+
+    this._shields = new Shields();
+
+    this.option('only', {
+      desc: 'Add only shields passed as cli options',
+      type: Boolean
+    });
+
+    this._shields.getItems().forEach(function(shieldName) {
+      this.option(shieldName, {
+        desc: this._shields.getShieldMessage(shieldName),
+        type: Boolean
+      });
+    }.bind(this));
+
+    this.usedShields = {};
+
+    this._shields.getItems().forEach(function(shieldName) {
+      if (this.options[shieldName]) {
+        this.usedShields[shieldName] = true;
+      }
+    }.bind(this));
+  },
+
+  initializing: function() {
     var pkg = this.fs.readJSON('package.json');
 
     this.npmName = pkg.name;
-
-    this._shields = new Shields();
 
     this._defaults = {
       npmName: pkg.name,
       repoOwner: 'someuser',
       repoName: this.appname,
       npm: ! pkg.private,
-      travis: this.fs.exists('.travis.yml'),
+      travis: this.usedShields.travis || this.fs.exists('.travis.yml'),
       coverage: false,
       climate: false,
-      deps: this._hasDeps(pkg, 'dependencies'),
-      devdeps: this._hasDeps(pkg, 'devDependencies'),
-      peerdeps: this._hasDeps(pkg, 'peerDependencies')
+      deps: this.usedShields.deps || this._hasDeps(pkg, 'dependencies'),
+      devdeps: this.usedShields.devdeps || this._hasDeps(pkg, 'devDependencies'),
+      peerdeps: this.usedShields.peerdeps || this._hasDeps(pkg, 'peerDependencies')
     };
   },
 
-  prompting: function () {
+  prompting: function() {
     var done = this.async();
     var defaults = this._defaults;
     var confirms = this._shields.getItems();
@@ -54,36 +78,41 @@ module.exports = yeoman.generators.Base.extend({
       }
     ];
 
-    prompts = prompts.concat(
-      confirms.map(function(item) {
-        return {
-          type: 'confirm',
-          name: item,
-          message: this._shields.getShieldMessage(item) + '?',
-          default: defaults[item]
-        };
-      }.bind(this))
-    );
+    if ( ! this.options.only) {
+      prompts = prompts.concat(
+        confirms
+          .filter(function(shieldName) {
+            return ! this.usedShields[shieldName];
+          }.bind(this))
+          .map(function(shieldName) {
+            return {
+              type: 'confirm',
+              name: shieldName,
+              message: this._shields.getShieldMessage(shieldName) + '?',
+              default: defaults[shieldName]
+            };
+          }.bind(this))
+      );
+    }
 
-    this.prompt(prompts, function (props) {
+    this.prompt(prompts, function(props) {
       this.repo = props.repoOwner + '/' + props.repoName;
       this.readme = props.readme;
 
-      confirms.forEach(function(item) {
-        this[item] = props[item];
+      confirms.forEach(function(shieldName) {
+        if (props[shieldName]) {
+          this.usedShields[shieldName] = true;  
+        }
       }.bind(this));
 
       done();
     }.bind(this));
   },
 
-  collectShields: function() {
-    this._shields.use(
-      this._shields.getItems().filter(function(shield) {
-        return Boolean(this[shield]);
-      }.bind(this)),
-      this
-    );
+  configuring: {
+    shields: function() {
+      this._shields.use(Object.keys(this.usedShields), this);
+    },
   },
 
   writing: {
