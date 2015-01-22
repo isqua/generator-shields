@@ -1,0 +1,19 @@
+{
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "freeze": true,
+  "indent": false,
+  "maxlen": 120,
+  "newcap": true,
+  "noempty": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "require": true,
+    "module": true
+  }
+}
