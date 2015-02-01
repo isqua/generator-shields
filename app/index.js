@@ -2,6 +2,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var Shields = require('./shields');
+var fs = require('fs');
 
 module.exports = yeoman.generators.Base.extend({
     constructor: function () {
@@ -36,6 +37,7 @@ module.exports = yeoman.generators.Base.extend({
         this.npmName = pkg.name;
 
         this._defaults = {
+            readme: this._findReadme(),
             npmName: pkg.name,
             repoOwner: 'someuser',
             repoName: this.appname,
@@ -73,7 +75,7 @@ module.exports = yeoman.generators.Base.extend({
             {
                 name: 'readme',
                 message: 'Readme file:',
-                default: 'README.md'
+                default: this._defaults.readme
             }
         ];
 
@@ -122,7 +124,7 @@ module.exports = yeoman.generators.Base.extend({
             README = README.split(/\r?\n/m);
 
             if (/^#/.test(README[0])) {
-                    afterHead = 1;
+                afterHead = 1;
             }
 
             if (README[README.length - 1] === '') {
@@ -140,5 +142,21 @@ module.exports = yeoman.generators.Base.extend({
     _hasDeps: function (pkg, depsField) {
         return Boolean(pkg[depsField] && Object.keys(pkg[depsField]).length);
     },
+
+    _findReadme: function () {
+        var regex = /readme.md/i;
+        var readme;
+
+        fs.readdirSync(this.destinationRoot())
+            .some(function (file) {
+                if (file.match(regex)) {
+                    readme = file;
+
+                    return true;
+                }
+            });
+
+        return readme;
+    }
 
 });
