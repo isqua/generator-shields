@@ -6,10 +6,23 @@ function Shields() {
     this._items = shieldList.items;
     this._aliases = [];
     this._text = [];
+    this._ext = 'svg';
+    this._style = 'flat';
 }
 
 Shields.prototype.getShieldImage = function (shieldName, info) {
-    return util.format('https://img.shields.io/%s.svg?style=flat', this._format(this._shields[shieldName].path, info));
+    return util.format(
+        'https://img.shields.io/%s.%s?style=%s',
+        this._format(this._shields[shieldName].path, info), this._ext, this._style
+    );
+};
+
+Shields.prototype.setExtension = function (ext) {
+    this._ext = ext;
+};
+
+Shields.prototype.setStyle = function (style) {
+    this._style = style;
 };
 
 Shields.prototype.getShieldImageAlias = function (shieldName, info) {

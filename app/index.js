@@ -15,6 +15,16 @@ module.exports = yeoman.generators.Base.extend({
             type: Boolean
         });
 
+        this.option('extension', {
+            desc: 'Image extension (png|svg)',
+            type: String
+        });
+
+        this.option('style', {
+            desc: 'Image style (plastic|flat|flat-squared)',
+            type: String
+        });
+
         this._shields.getItems().forEach(function (shieldName) {
             this.option(shieldName, {
                 desc: this._shields.getShieldMessage(shieldName),
@@ -55,6 +65,7 @@ module.exports = yeoman.generators.Base.extend({
         var done = this.async();
         var defaults = this._defaults;
         var confirms = this._shields.getItems();
+        var gen = this;
 
         // Have Yeoman greet the user.
         this.log(yosay(
@@ -83,22 +94,44 @@ module.exports = yeoman.generators.Base.extend({
             prompts = prompts.concat(
                 confirms
                     .filter(function (shieldName) {
-                        return ! this.usedShields[shieldName];
-                    }.bind(this))
+                        return ! gen.usedShields[shieldName];
+                    })
                     .map(function (shieldName) {
                         return {
                             type: 'confirm',
                             name: shieldName,
-                            message: this._shields.getShieldMessage(shieldName) + '?',
+                            message: gen._shields.getShieldMessage(shieldName) + '?',
                             default: defaults[shieldName]
                         };
-                    }.bind(this))
+                    })
             );
+            if ( ! this.options.extension) {
+                prompts.push({
+                    name: 'extension',
+                    message: 'Image extension',
+                    type: 'list',
+                    choices: ['svg', 'png'],
+                    default: 'svg'
+                });
+            }
+            if ( ! this.options.style) {
+                prompts.push({
+                    name: 'style',
+                    message: 'Image style',
+                    type: 'list',
+                    choices: ['plastic', 'flat', 'flat-squared'],
+                    default: 'flat'
+                });   
+            }
+            
         }
 
         this.prompt(prompts, function (props) {
             this.repo = props.repoOwner + '/' + props.repoName;
             this.readme = props.readme;
+
+            this._shields.setExtension(this.options.extension || props.extension);
+            this._shields.setStyle(this.options.style || props.style);
 
             confirms.forEach(function (shieldName) {
                 if (props[shieldName]) {
