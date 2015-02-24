@@ -4,11 +4,11 @@
   "description": "Generate shields for your node.js module",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "isquariel/generator-shields",
+  "repository": "isqua/generator-shields",
   "author": {
     "name": "isqua",
     "email": "isqua@isqua.ru",
-    "url": "https://github.com/isquariel"
+    "url": "https://github.com/isqua"
   },
   "engines": {
     "node": ">=0.10.0"

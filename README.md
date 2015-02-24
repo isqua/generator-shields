@@ -66,16 +66,16 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 MIT
 
-[npm-example]: https://isquariel.github.io/generator-shields/shields/npm.svg
-[build-example]: https://isquariel.github.io/generator-shields/shields/build.svg
-[coverage-example]: https://isquariel.github.io/generator-shields/shields/coverage.svg
-[climate-example]: https://isquariel.github.io/generator-shields/shields/climate.svg
-[deps-example]: https://isquariel.github.io/generator-shields/shields/deps.svg
-[devdeps-example]: https://isquariel.github.io/generator-shields/shields/devdeps.svg
-[peerdeps-example]: https://isquariel.github.io/generator-shields/shields/peerdeps.svg
+[npm-example]: https://isqua.github.io/generator-shields/shields/npm.svg
+[build-example]: https://isqua.github.io/generator-shields/shields/build.svg
+[coverage-example]: https://isqua.github.io/generator-shields/shields/coverage.svg
+[climate-example]: https://isqua.github.io/generator-shields/shields/climate.svg
+[deps-example]: https://isqua.github.io/generator-shields/shields/deps.svg
+[devdeps-example]: https://isqua.github.io/generator-shields/shields/devdeps.svg
+[peerdeps-example]: https://isqua.github.io/generator-shields/shields/peerdeps.svg
 [npm-image]: https://img.shields.io/npm/v/generator-shields.svg?style=flat
 [npm-link]: https://npmjs.org/package/generator-shields
-[deps-image]: https://img.shields.io/david/isquariel/generator-shields.svg?style=flat
-[deps-link]: https://david-dm.org/isquariel/generator-shields
-[peerdeps-image]: https://img.shields.io/david/peer/isquariel/generator-shields.svg?style=flat
-[peerdeps-link]: https://david-dm.org/isquariel/generator-shields#info=peerDependencies
+[deps-image]: https://img.shields.io/david/isqua/generator-shields.svg?style=flat
+[deps-link]: https://david-dm.org/isqua/generator-shields
+[peerdeps-image]: https://img.shields.io/david/peer/isqua/generator-shields.svg?style=flat
+[peerdeps-link]: https://david-dm.org/isqua/generator-shields#info=peerDependencies
