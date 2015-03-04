@@ -3,8 +3,25 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var Shields = require('./shields');
 var fs = require('fs');
+var path = require('path');
 
 module.exports = yeoman.generators.Base.extend({
+    determineAppname: function() {
+        var appname;
+
+        try {
+            appname = require(path.join(process.cwd(), 'bower.json')).name;
+        } catch (e) {
+            try {
+                appname = require(path.join(process.cwd(), 'package.json')).name;
+            } catch (e) {}
+        }
+        if (!appname) {
+            appname = path.basename(process.cwd());
+        }
+
+        return appname;
+    },
     constructor: function () {
         yeoman.generators.Base.apply(this, arguments);
 
