@@ -164,9 +164,9 @@ module.exports = yeoman.generators.Base.extend({
                     README.pop();
             }
 
-            README.splice.apply(README, [afterHead, 0].concat(this._shields.getText()));
+            README.splice.apply(README, [afterHead, 0].concat('', this._shields.getText()));
 
-            README = README.concat(this._shields.getAliases()).concat('');
+            README = README.concat('', this._shields.getAliases()).concat('');
 
             this.fs.write(this.readme, README.join('\n'));
         }
