@@ -43,7 +43,7 @@ module.exports = {
             message: 'Add devDependencies shield',
             text: 'devDependency status',
             path: 'david/dev/{repo}',
-            link: 'https://david-dm.org/{repo}#info=peerDependencies'
+            link: 'https://david-dm.org/{repo}#info=devDependencies'
         },
         peerdeps: {
             message: 'Add peerDependencies shield',
