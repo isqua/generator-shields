@@ -3,3 +3,4 @@
 .jscs.json
 .jshintignore
 .jshintrc
+.travis.yml
